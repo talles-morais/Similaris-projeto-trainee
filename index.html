@@ -4,8 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div class="barra-busca">
+        <input type="text" id="inputBusca" placeholder="Digite o que deseja buscar">
+        
+        <select id="selectTipo">
+            <option value="movie">Filme</option>
+            <option value="show">Série</option>
+            <option value="music">Música</option>
+            <option value="book">Livro</option>
+            <option value="game">Jogo</option>
+        </select>
+        
+        <input type="number" id="inputLimite" placeholder="Limite" value="6" min="1" max="20">
+        
+        <button id="btnBuscar">Buscar</button>
+    </div>
+    <div id="resultado"></div>
     
+    <script src="js/searchBar.js"></script>
 </body>
 </html>
