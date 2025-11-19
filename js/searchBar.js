@@ -1,5 +1,8 @@
-const API_KEY = '1062637-Similarr-FB7B0863';
+// ATENÇÃO: Se for commitar este arquivo, APAGUE ou TROQUE o valor de API_KEY para 'INSIRA-A-API-AQUI'!
+// Exemplo seguro:
+// const API_KEY = 'INSIRA-A-API-AQUI';
 const PROXY_URL = 'https://corsproxy.io/?';
+const API_KEY = 'INSIRA-A-API-AQUI';
 
 async function buscarRecomendacoes(busca, tipo, limite) {
     try {
@@ -40,12 +43,12 @@ document.getElementById('btnBuscar').addEventListener('click', async () => {
     }
     
     // HTML dos cards - altere as tags (h3, p, etc) e classes conforme achar melhor.
-    resultado.innerHTML = resultados.map(r => `
-        <div class="filme-card">
-            <h3>${r.Name || r.name}</h3>
-            ${r.yID ? `<iframe src="https://www.youtube.com/embed/${r.yID}" allowfullscreen></iframe>` : ''}
-            <p class="descricao">${r.description || 'Sem descrição disponível'}</p>
-            <p class="tipo">${r.Type || r.type || tipo}</p>
-        </div>
-    `).join('');
+        resultado.innerHTML = resultados.map(r => `
+            <div class="p-2 border border-gray-300 rounded-lg w-full sm:w-[calc(33.333%-20px)] min-w-[200px] text-center box-border flex flex-col items-center">
+                <h3 class="font-semibold text-lg mb-2">${r.Name || r.name}</h3>
+                ${r.yID ? `<iframe class="w-full aspect-video mb-2" src="https://www.youtube.com/embed/${r.yID}" allowfullscreen></iframe>` : ''}
+                <p class="descricao mb-1">${r.description || 'Sem descrição disponível'}</p>
+                <p class="tipo text-sm text-gray-500">${r.Type || r.type || tipo}</p>
+            </div>
+        `).join('');
 });
