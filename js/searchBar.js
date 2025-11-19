@@ -1,0 +1,54 @@
+// ATENÇÃO: Se for commitar este arquivo, APAGUE ou TROQUE o valor de API_KEY para 'INSIRA-A-API-AQUI'!
+// Exemplo seguro:
+// const API_KEY = 'INSIRA-A-API-AQUI';
+const PROXY_URL = 'https://corsproxy.io/?';
+const API_KEY = 'INSIRA-A-API-AQUI';
+
+async function buscarRecomendacoes(busca, tipo, limite) {
+    try {
+        const query = `${tipo}:${busca}`;
+        const url = `${PROXY_URL}${encodeURIComponent(`https://tastedive.com/api/similar?q=${encodeURIComponent(query)}&type=${tipo}&k=${API_KEY}&limit=${limite}&info=1`)}`;
+        
+        console.log('URL completa:', url);
+        
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        console.log('Resposta da API:', data);
+        console.log('Primeiro resultado completo:', data.Similar?.Results?.[0] || data.similar?.results?.[0]);
+        return data.Similar?.Results || data.similar?.results || [];
+        
+    } catch (error) {
+        console.error('Erro:', error);
+        return [];
+    }
+}
+
+document.getElementById('btnBuscar').addEventListener('click', async () => {
+    const busca = document.getElementById('inputBusca').value;
+    const tipo = document.getElementById('selectTipo').value;
+    const limite = document.getElementById('inputLimite').value || 6;
+    
+    // console.log('Buscando:', busca, '| Tipo:', tipo, '| Limite:', limite);
+    
+    const resultados = await buscarRecomendacoes(busca, tipo, limite);
+    // console.log('Resultados encontrados:', resultados);
+    // console.log('Quantidade:', resultados.length);
+    
+    const resultado = document.getElementById('resultado');
+    
+    if (!resultados || resultados.length === 0) {
+        resultado.innerHTML = '<p>Nenhuma recomendação encontrada!</p>';
+        return;
+    }
+    
+    // HTML dos cards - altere as tags (h3, p, etc) e classes conforme achar melhor.
+        resultado.innerHTML = resultados.map(r => `
+            <div class="p-2 border border-gray-300 rounded-lg w-full sm:w-[calc(33.333%-20px)] min-w-[200px] text-center box-border flex flex-col items-center">
+                <h3 class="font-semibold text-lg mb-2">${r.Name || r.name}</h3>
+                ${r.yID ? `<iframe class="w-full aspect-video mb-2" src="https://www.youtube.com/embed/${r.yID}" allowfullscreen></iframe>` : ''}
+                <p class="descricao mb-1">${r.description || 'Sem descrição disponível'}</p>
+                <p class="tipo text-sm text-gray-500">${r.Type || r.type || tipo}</p>
+            </div>
+        `).join('');
+});
