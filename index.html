@@ -3,38 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Simillares</title>
-     
-</head>
-<body>
-     <header class="flex flex-row justify-between items-center px-8 lg:px-30 py-9 bg-gradient-to- from-[#911335] to-[#F7215] Aw-full h-20 text-white">
-            
-        <h1 class="text-4xl font-main">SIMILLARES</h1>
 
-        <div class="hidden lg:flex lg:flex-row items-center gap-8 font-secundary">
-  <a class="text-2xl hover:text-main transition duration-200" href="#">Apresentação</a>
-  <a class="text-2xl hover:text-main transition duration-200" href="#">Início</a>
-  <a class="text-2xl hover:text-main transition duration-200" href="#">Contatos</a>
-</div>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sintony:wght@400;700&family=Stick+No+Bills:wght@200..800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              main: ['Stick No Bills', 'sans-serif'], 
+              secundary: ['Sintony', 'sans-serif']
+            }
+          }
+        }
+      }
+    </script>
+
+    <title>Simillares</title>
+</head>
+<body class="text-white">
+<style>
+  @layer utilities {
+    .noise {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .noise::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='1' height='1' fill='rgba(254,149,149,0.25)'/%3E%3C/svg%3E");
+      opacity: 0.75; /* Densidade 75% */
+      mix-blend-mode: normal;
+      background-size: 0.5px 0.5px; /* Tamanho do ruído 0.5 */
+    }
+  }
+</style>
+
+<header class="flex flex-row justify-between items-center px-8 lg:px-24 py-9 noise bg-gradient-to-r from-[#911335] to-[#F7215A] w-full h-20">
+
+    <h1 class="text-7xl font-main text-shadow-custom">SIMILLARES</h1>
+
+    <style>
+  @layer utilities {
+    .text-shadow-custom {
+      text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.5);
+    }
+  }
+</style>
+
+
+    <div class="hidden lg:flex lg:flex-row items-center gap-8 font-secundary">
+      <a class="text-2xl hover:text-main transition duration-200" href="#">Apresentação</a>
+      <a class="text-2xl hover:text-main transition duration-200" href="#">Início</a>
+      <a class="text-2xl hover:text-main transition duration-200" href="#">Contatos</a>
+    </div>
 
     <div class="size-8 lg:hidden">
-    <img src="./img/icon_hamburguer.png" alt="Menu" />
+      <img src="./img/icon_hamburguer.png" alt="Menu" />
     </div>
 
 </header>
 
-<footer class="py-6 bg-vermelho-escuro text-black bg-gradient-to- from-[#911335] to-[#F7215A] w-full h-20">
+<footer class="py-6 noise bg-gradient-to-b from-[#911335] to-[#F7215A] w-full text-black">
     <div class="flex flex-col gap-8">
-        <div class="flex flex-row gap-8 justify-center itens-center ">
-            <img src="./img/25231 1.png" alt="Logo github" class="size-8"/>
-            <img src="./img/av16efeffeed4418c90c1 1.png" alt="logo instagram" class="size-8"/>
-            <img src="./img/free-linkedin-icon-112-thumb 1.png" alt="logo instagram" class="size-8"/>
+        
+        <div class="flex flex-row gap-8 justify-center items-center">
+            <img src="./img/25231 1.png" class="size-8"/>
+            <img src="./img/av16efeffeed4418c90c1 1.png" class="size-14"/>
+            <img src="./img/free-linkedin-icon-112-thumb 1.png" class="size-8"/>
         </div>
-        <div>
+
+        <div class="text-center fonte-secundary">
             <p class="font-secundary">trainee@byronsolutions.com</p>
-            <p class="font-secundary">(99)99999-9999</p>
+            <p class="font-secundary">(99) 99999-9999</p>
         </div>
+
     </div>
 </footer>
-</body></html>
+
+</body>
+</html>
