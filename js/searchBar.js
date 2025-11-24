@@ -28,27 +28,22 @@ document.getElementById('btnBuscar').addEventListener('click', async () => {
     const busca = document.getElementById('inputBusca').value;
     const tipo = document.getElementById('selectTipo').value;
     const limite = document.getElementById('inputLimite').value || 6;
-    
-    // console.log('Buscando:', busca, '| Tipo:', tipo, '| Limite:', limite);
-    
+
     const resultados = await buscarRecomendacoes(busca, tipo, limite);
-    // console.log('Resultados encontrados:', resultados);
-    // console.log('Quantidade:', resultados.length);
-    
-    const resultado = document.getElementById('resultado');
-    
+
+    const container = document.getElementById('container-cards');
+
     if (!resultados || resultados.length === 0) {
-        resultado.innerHTML = '<p>Nenhuma recomendação encontrada!</p>';
+        container.innerHTML = '<p class="col-span-full text-center text-lg">Nenhuma recomendação encontrada!</p>';
         return;
     }
-    
-    // HTML dos cards - altere as tags (h3, p, etc) e classes conforme achar melhor.
-        resultado.innerHTML = resultados.map(r => `
-            <div class="p-2 border border-gray-300 rounded-lg w-full sm:w-[calc(33.333%-20px)] min-w-[200px] text-center box-border flex flex-col items-center">
-                <h3 class="font-semibold text-lg mb-2">${r.Name || r.name}</h3>
-                ${r.yID ? `<iframe class="w-full aspect-video mb-2" src="https://www.youtube.com/embed/${r.yID}" allowfullscreen></iframe>` : ''}
-                <p class="descricao mb-1">${r.description || 'Sem descrição disponível'}</p>
-                <p class="tipo text-sm text-gray-500">${r.Type || r.type || tipo}</p>
-            </div>
-        `).join('');
+
+    container.innerHTML = resultados.map(r => `
+        <div class="p-2 border border-gray-300 rounded-lg w-full min-w-[200px] text-center box-border flex flex-col items-center bg-white shadow">
+            <h3 class="font-semibold text-lg mb-2">${r.Name || r.name}</h3>
+            ${r.yID ? `<iframe class="w-full aspect-video mb-2" src="https://www.youtube.com/embed/${r.yID}" allowfullscreen></iframe>` : ''}
+            <p class="descricao mb-1">${r.description || 'Sem descrição disponível'}</p>
+            <p class="tipo text-sm text-gray-500">${r.Type || r.type || tipo}</p>
+        </div>
+    `).join('');
 });
