@@ -7,7 +7,7 @@ const API_KEY = 'INSIRA-A-API-AQUI';
 async function buscarRecomendacoes(busca, tipo, limite) {
     try {
         const query = `${tipo}:${busca}`;
-        const url = `${PROXY_URL}${encodeURIComponent(`https://tastedive.com/api/similar?q=${encodeURIComponent(query)}&type=${tipo}&k=${API_KEY}&limit=${limite}&info=1`)}`;
+        const url = `${PROXY_URL}${encodeURIComponent(`https://tastedive.com/api/similar?q=${encodeURIComponent(query)}&type=${tipo}&k=${API_KEY}&info=1`)}`;
         
         console.log('URL completa:', url);
         
@@ -24,26 +24,52 @@ async function buscarRecomendacoes(busca, tipo, limite) {
     }
 }
 
-document.getElementById('btnBuscar').addEventListener('click', async () => {
-    const busca = document.getElementById('inputBusca').value;
-    const tipo = document.getElementById('selectTipo').value;
-    const limite = document.getElementById('inputLimite').value || 6;
 
-    const resultados = await buscarRecomendacoes(busca, tipo, limite);
+let resultadosGlobais = [];
+let indiceAtual = 0;
+const CARDS_VISIVEIS = 3;
 
+function renderizarCarrossel() {
     const container = document.getElementById('container-cards');
-
-    if (!resultados || resultados.length === 0) {
+    if (!resultadosGlobais || resultadosGlobais.length === 0) {
         container.innerHTML = '<p class="col-span-full text-center text-lg">Nenhuma recomendação encontrada!</p>';
+        document.getElementById('btnAnterior').disabled = true;
+        document.getElementById('btnProximo').disabled = true;
         return;
     }
-
-    container.innerHTML = resultados.map(r => `
+    const visiveis = resultadosGlobais.slice(indiceAtual, indiceAtual + CARDS_VISIVEIS);
+    container.innerHTML = visiveis.map(r => `
         <div class="p-2 border border-gray-300 rounded-lg w-full min-w-[200px] text-center box-border flex flex-col items-center bg-white shadow">
             <h3 class="font-semibold text-lg mb-2">${r.Name || r.name}</h3>
             ${r.yID ? `<iframe class="w-full aspect-video mb-2" src="https://www.youtube.com/embed/${r.yID}" allowfullscreen></iframe>` : ''}
             <p class="descricao mb-1">${r.description || 'Sem descrição disponível'}</p>
-            <p class="tipo text-sm text-gray-500">${r.Type || r.type || tipo}</p>
+            <p class="tipo text-sm text-gray-500">${r.Type || r.type || ''}</p>
         </div>
     `).join('');
+    // Atualiza botões
+    document.getElementById('btnAnterior').disabled = indiceAtual === 0;
+    document.getElementById('btnProximo').disabled = (indiceAtual + CARDS_VISIVEIS) >= resultadosGlobais.length;
+}
+
+document.getElementById('btnBuscar').addEventListener('click', async () => {
+    const busca = document.getElementById('inputBusca').value;
+    const tipo = document.getElementById('selectTipo').value;
+    resultadosGlobais = await buscarRecomendacoes(busca, tipo);
+    indiceAtual = 0;
+    renderizarCarrossel();
+});
+
+document.getElementById('btnAnterior').addEventListener('click', () => {
+    if (indiceAtual > 0) {
+        indiceAtual -= 1;
+        if (indiceAtual < 0) indiceAtual = 0;
+        renderizarCarrossel();
+    }
+});
+
+document.getElementById('btnProximo').addEventListener('click', () => {
+    if (resultadosGlobais && (indiceAtual + CARDS_VISIVEIS) < resultadosGlobais.length) {
+        indiceAtual += 1;
+        renderizarCarrossel();
+    }
 });
