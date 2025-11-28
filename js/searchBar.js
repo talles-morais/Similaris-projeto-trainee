@@ -2,12 +2,14 @@
 // Exemplo seguro:
 // const API_KEY = 'INSIRA-A-API-AQUI';
 const PROXY_URL = 'https://corsproxy.io/?';
-const API_KEY = 'INSIRA-A-API-AQUI';
+const API_KEY = '1062637-Similarr-FB7B0863';
 
-async function buscarRecomendacoes(busca, tipo, limite) {
+
+async function buscarRecomendacoes(busca) {
     try {
+        const tipo = "movie"
         const query = `${tipo}:${busca}`;
-        const url = `${PROXY_URL}${encodeURIComponent(`https://tastedive.com/api/similar?q=${encodeURIComponent(query)}&type=${tipo}&k=${API_KEY}&limit=${limite}&info=1`)}`;
+        const url = `${PROXY_URL}${encodeURIComponent(`https://tastedive.com/api/similar?q=${encodeURIComponent(query)}&type=${tipo}&k=${API_KEY}&info=1`)}`;
         
         console.log('URL completa:', url);
         
@@ -25,11 +27,8 @@ async function buscarRecomendacoes(busca, tipo, limite) {
 }
 
 document.getElementById('btnBuscar').addEventListener('click', async () => {
-    const busca = document.getElementById('inputBusca').value;
-    const tipo = document.getElementById('selectTipo').value;
-    const limite = document.getElementById('inputLimite').value || 6;
-
-    const resultados = await buscarRecomendacoes(busca, tipo, limite);
+    const busca = document.getElementById('inputBusca').value;        
+    const resultados = await buscarRecomendacoes(busca);
 
     const container = document.getElementById('container-cards');
 
@@ -43,7 +42,7 @@ document.getElementById('btnBuscar').addEventListener('click', async () => {
             <h3 class="font-semibold text-lg mb-2">${r.Name || r.name}</h3>
             ${r.yID ? `<iframe class="w-full aspect-video mb-2" src="https://www.youtube.com/embed/${r.yID}" allowfullscreen></iframe>` : ''}
             <p class="descricao mb-1">${r.description || 'Sem descrição disponível'}</p>
-            <p class="tipo text-sm text-gray-500">${r.Type || r.type || tipo}</p>
+            <p class="tipo text-sm text-gray-500">${r.Type || r.type || ''}</p>
         </div>
     `).join('');
 });
