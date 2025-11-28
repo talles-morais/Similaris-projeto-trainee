@@ -5,19 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultados da Busca</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sintony:wght@400;700&family=Stick+No+Bills:wght@200..800&display=swap" rel="stylesheet">
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              main: ['Stick No Bills', 'sans-serif'], 
+              secundary: ['Sintony', 'sans-serif']
+            }
+          }
+        }
+      }
+    </script>
 </head>
 
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-black text-gray-100 font-secundary">
+
+    <div class="w-full flex flex-col items-center py-8 bg-[#1a1a1a] border-b border-gray-800">
+        <div class="flex flex-wrap gap-4 items-center justify-center">
+            <input type="text" id="inputBusca" placeholder="Digite o que deseja buscar"
+                class="border border-gray-600 bg-gray-800 text-white rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 w-64 lg:w-96" />
+            
+            <select id="selectTipo" class="border border-gray-600 bg-gray-800 text-white rounded px-3 py-2">
+                <option value="movie">Filme</option>
+                <option value="book">Livro</option>
+                <option value="game">Jogo</option>
+            </select>
+            
+            <input type="number" id="inputLimite" placeholder="Qtd" value="6" min="1" max="20"
+                class="border border-gray-600 bg-gray-800 text-white rounded px-3 py-2 w-20" />
+            
+            <button id="btnBuscar" class="bg-[#F7215A] text-white px-6 py-2 rounded font-bold hover:bg-[#911335] transition">
+                BUSCAR
+            </button>
+        </div>
+    </div>
 
     <section class="px-6 py-12 flex flex-col items-center gap-10">
         
-        <h2 class="text-3xl font-extrabold text-gray-900 uppercase tracking-wide">
+        <h2 class="text-4xl font-main text-white uppercase tracking-wide">
             Resultados Encontrados
         </h2>
 
-        <div id="container-cards" class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full max-w-7xl">
-            
-        </div> 
+        <div id="resultado" class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full max-w-7xl">
+            </div> 
 
     </section>
 

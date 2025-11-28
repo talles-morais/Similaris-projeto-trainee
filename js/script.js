@@ -1,54 +1,75 @@
-
 const cardsData = [
     {
         titulo: "Harry Potter e a Câmara Secreta",
-        descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+        categoria: "LIVRO",
+        descricao: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, aliquam. Molestias temporibus nam error ex quia tempora blanditiis esse quisquam quibusdam modi labore cum nostrum distinctio alias, illo culpa corrupti!Lorem  Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quae ducimus commodi eveniet nam quod similique placeat asperiores in atque veniam odit recusandae cumque suscipit, sapiente quo, aspernatur aliquid quos.",
         imagem: ""
     },
     {
         titulo: "O Senhor dos Anéis",
-        descricao: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+        categoria: "LIVRO",
+        descricao: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, aliquam. Molestias temporibus nam error ex quia tempora blanditiis esse quisquam quibusdam modi labore cum nostrum distinctio alias, illo culpa corrupti!Lorem  Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quae ducimus commodi eveniet nam quod similique placeat asperiores in atque veniam odit recusandae cumque suscipit, sapiente quo, aspernatur aliquid quos.",
         imagem: ""
     },
     {
-        titulo: "Castelo",
-        descricao: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        titulo: "Vingadores: Ultimato",
+        categoria: "FILME",
+        descricao: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, aliquam. Molestias temporibus nam error ex quia tempora blanditiis esse quisquam quibusdam modi labore cum nostrum distinctio alias, illo culpa corrupti!Lorem  Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quae ducimus commodi eveniet nam quod similique placeat asperiores in atque veniam odit recusandae cumque suscipit, sapiente quo, aspernatur aliquid quos..",
         imagem: ""
     },
     {
         titulo: "Castelo de Hogwarts",
-        descricao: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+        categoria: "LUGAR",
+        descricao: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, aliquam. Molestias temporibus nam error ex quia tempora blanditiis esse quisquam quibusdam modi labore cum nostrum distinctio alias, illo culpa corrupti!Lorem  Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quae ducimus commodi eveniet nam quod similique placeat asperiores in atque veniam odit recusandae cumque suscipit, sapiente quo, aspernatur aliquid quos.",
         imagem: ""
     },
     {
         titulo: "Matrix Reloaded",
-        descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore",
+        categoria: "FILME",
+        descricao: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, aliquam. Molestias temporibus nam error ex quia tempora blanditiis esse quisquam quibusdam modi labore cum nostrum distinctio alias, illo culpa corrupti!Lorem  Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quae ducimus commodi eveniet nam quod similique placeat asperiores in atque veniam odit recusandae cumque suscipit, sapiente quo, aspernatur aliquid quos..",
         imagem: ""
     },
     {
-        titulo: "Nárnia",
-        descricao: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+        titulo: "As Crônicas de Nárnia",
+        categoria: "LIVRO",
+        descricao: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, aliquam. Molestias temporibus nam error ex quia tempora blanditiis esse quisquam quibusdam modi labore cum nostrum distinctio alias, illo culpa corrupti!Lorem  Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quae ducimus commodi eveniet nam quod similique placeat asperiores in atque veniam odit recusandae cumque suscipit, sapiente quo, aspernatur aliquid quos.",
         imagem: ""
     }
 ];
 
-    const container = document.getElementById("container-cards");
+const container = document.getElementById("resultado");
 
-// (Manipulação do DOM)
-cardsData.forEach(card => {
+if (container) {
+    container.innerHTML = ""; 
 
-    const htmlDoCard = `
-      <div class="flex flex-col bg-white w-full rounded-xl p-4 gap-4 drop-shadow-xl hover:scale-105 transition-transform duration-300">
-          <div class="h-64 rounded-lg overflow-hidden bg-gray-200 relative">
-              <img src="${card.imagem}" alt="${card.titulo}" class="w-full h-full object-cover">
-          </div>
-          <div>
-              <h3 class="text-xl font-bold text-gray-800">${card.titulo}</h3>
-              <p class="text-gray-600 mt-2 text-sm leading-relaxed">
-                  ${card.descricao}
-              </p>
-          </div>
-      </div>
-    `;
-    container.innerHTML += htmlDoCard;
-});
+    cardsData.forEach(card => {
+        
+        const htmlDoCard = `
+          <div class="group flex flex-col bg-[#1E1E1E] w-full rounded-2xl overflow-hidden border border-gray-800 hover:border-[#F7215A] hover:-translate-y-2 transition-all duration-300 shadow-lg">
+              
+              <div class="h-64 w-full relative overflow-hidden">
+                  <img src="${card.imagem}" alt="${card.titulo}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                  
+                    <div class="absolute top-3 right-3 bg-[#F7215A] text-white text-[10px] font-bold px-3 py-1  rounded-full font-secundary tracking-widest shadow-md">
+                      ${card.categoria || 'GERAL'}
+                  </div>
+              </div>
+              
+              <div class="p-6 flex flex-col gap-3">
+                  <h3 class="text-xl font-bold text-white font-main tracking-wider uppercase truncate">
+                      ${card.titulo}
+                  </h3>
+                  
+                  <p class="text-gray-400 text-sm leading-relaxed font-secundary line-clamp-3">
+                      ${card.descricao}
+                  </p>
+                  
+                  <div class="mt-2 text-[#F7215A] text-xs font-bold uppercase tracking-widest group-hover:underline cursor-pointer font-secundary">
+                      Ver detalhes ->
+                </div>
+                 </div>
+                     </div>
+                    `;
+        container.innerHTML += htmlDoCard;
+             });
+}
