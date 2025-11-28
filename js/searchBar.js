@@ -25,9 +25,24 @@ async function buscarRecomendacoes(busca, tipo, limite) {
 }
 
 
+
 let resultadosGlobais = [];
 let indiceAtual = 0;
-const CARDS_VISIVEIS = 3;
+let CARDS_VISIVEIS = getCardsVisiveis();
+
+function getCardsVisiveis() {
+    // 1024px é o breakpoint padrão do Tailwind para 'lg'
+    return window.matchMedia('(min-width: 1024px)').matches ? 3 : 1;
+}
+
+window.addEventListener('resize', () => {
+    const novoValor = getCardsVisiveis();
+    if (novoValor !== CARDS_VISIVEIS) {
+        CARDS_VISIVEIS = novoValor;
+        indiceAtual = 0;
+        renderizarCarrossel();
+    }
+});
 
 function renderizarCarrossel() {
     const container = document.getElementById('container-cards');
