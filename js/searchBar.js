@@ -68,8 +68,7 @@ function renderizarCarrossel() {
 
 document.getElementById('btnBuscar').addEventListener('click', async () => {
     const busca = document.getElementById('inputBusca').value;
-    const tipo = document.getElementById('selectTipo').value;
-    resultadosGlobais = await buscarRecomendacoes(busca, tipo);
+    resultadosGlobais = await buscarRecomendacoes(busca);
     indiceAtual = 0;
     renderizarCarrossel();
 });

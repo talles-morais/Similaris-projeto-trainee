@@ -2,17 +2,6 @@
 <html lang="pt-br">
 <head>
         <script src="https://cdn.tailwindcss.com"></script>
-            <script>
-                tailwind.config = {
-                    theme: {
-                        extend: {
-                            colors: {
-                                '191818': '#191818',
-                            }
-                        }
-                    }
-                }
-            </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,6 +11,9 @@
       tailwind.config = {
         theme: {
           extend: {
+            colors: {
+              'dark-bg': '#191818',
+            },
             fontFamily: {
               main: ['Stick No Bills', 'sans-serif'], 
               secundary: ['Sintony', 'sans-serif']
@@ -93,7 +85,7 @@
     </section>
 
     <!-- Barra de busca -->
-    <div class="w-full h-[100px] lg:h-[146px] flex flex-col items-center py-8 shadow bg-191818">
+    <div class="w-full h-[100px] lg:h-[146px] flex flex-col items-center py-8 shadow bg-dark-bg">
         <!-- Input grande: só aparece em lg pra cima -->
         <div class="hidden lg:flex w-full max-w-[800px]">
             <input type="text" id="inputBusca" placeholder="Digite o que deseja buscar"
@@ -105,7 +97,7 @@
         <!-- Input pequeno: só aparece em telas menores que lg -->
         <div class="flex lg:hidden justify-center w-full max-w-xs mx-auto pb-[20px] -mt-3">
             <input type="text" id="inputBuscaMobile" placeholder="Digite o que deseja buscar"
-                class="rounded-full w-full h-12 px-4 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-191818 text-white placeholder-font-['Sintony'] placeholder:text-[20px] border-0 -mt-0.5" />
+                class="rounded-full w-full h-12 px-4 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-dark-bg text-white placeholder-font-['Sintony'] placeholder:text-[20px] border-0 -mt-0.5" />
             <button id="btnBuscarMobile" class="-ml-10 text-white p-2 rounded-full flex items-center justify-center z-10">
                 <img src="img/lupa.png" alt="Buscar" class="w-[41px] h-[41px]" />
             </button>
