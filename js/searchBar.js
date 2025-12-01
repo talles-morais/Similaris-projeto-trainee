@@ -2,10 +2,12 @@
 // Exemplo seguro:
 // const API_KEY = 'INSIRA-A-API-AQUI';
 const PROXY_URL = 'https://corsproxy.io/?';
-const API_KEY = 'INSIRA-A-API-AQUI';
+const API_KEY = '1062637-Similarr-FB7B0863';
 
-async function buscarRecomendacoes(busca, tipo, limite) {
+
+async function buscarRecomendacoes(busca) {
     try {
+        const tipo = "movie"
         const query = `${tipo}:${busca}`;
         const url = `${PROXY_URL}${encodeURIComponent(`https://tastedive.com/api/similar?q=${encodeURIComponent(query)}&type=${tipo}&k=${API_KEY}&info=1`)}`;
         
@@ -23,8 +25,6 @@ async function buscarRecomendacoes(busca, tipo, limite) {
         return [];
     }
 }
-
-
 
 let resultadosGlobais = [];
 let indiceAtual = 0;

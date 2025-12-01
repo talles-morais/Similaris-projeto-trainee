@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+            <script>
+                tailwind.config = {
+                    theme: {
+                        extend: {
+                            colors: {
+                                '191818': '#191818',
+                            }
+                        }
+                    }
+                }
+            </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -82,23 +93,24 @@
     </section>
 
     <!-- Barra de busca -->
-    <div class="w-full flex flex-col items-center py-8 bg-white shadow">
-        <div class="flex flex-wrap gap-4 items-center">
+    <div class="w-full h-[100px] lg:h-[146px] flex flex-col items-center py-8 shadow bg-191818">
+        <!-- Input grande: só aparece em lg pra cima -->
+        <div class="hidden lg:flex w-full max-w-[800px]">
             <input type="text" id="inputBusca" placeholder="Digite o que deseja buscar"
-                class="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
-            <select id="selectTipo" class="border rounded px-3 py-2">
-                <option value="movie">Filme</option>
-                <option value="show">Série</option>
-                <option value="music">Música</option>
-                <option value="book">Livro</option>
-                <option value="game">Jogo</option>
-            </select>
-            <!-- <input type="number" id="inputLimite" placeholder="Limite" value="6" min="1" max="20"
-                class="border rounded px-3 py-2 w-24" /> -->
-            <button id="btnBuscar" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-                Buscar
+                class="rounded-full w-[743px] h-[63px] border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-font-[\'Sintony\'] placeholder:text-[32px]" />
+            <button id="btnBuscar" class="-ml-14 text-white p-3 rounded-full hover:bg-gray-300 transition flex items-center justify-center z-10">
+                <img src="img/lupa.png" alt="Buscar" class="w-6 h-6" />
             </button>
         </div>
+        <!-- Input pequeno: só aparece em telas menores que lg -->
+        <div class="flex lg:hidden justify-center w-full max-w-xs mx-auto pb-[20px] -mt-3">
+            <input type="text" id="inputBuscaMobile" placeholder="Digite o que deseja buscar"
+                class="rounded-full w-full h-12 px-4 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-191818 text-white placeholder-font-['Sintony'] placeholder:text-[20px] border-0 -mt-0.5" />
+            <button id="btnBuscarMobile" class="-ml-10 text-white p-2 rounded-full flex items-center justify-center z-10">
+                <img src="img/lupa.png" alt="Buscar" class="w-[41px] h-[41px]" />
+            </button>
+        </div>
+
     </div>
 
     <!-- Cards de resultados -->
