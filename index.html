@@ -93,8 +93,8 @@
                 <option value="book">Livro</option>
                 <option value="game">Jogo</option>
             </select>
-            <input type="number" id="inputLimite" placeholder="Limite" value="6" min="1" max="20"
-                class="border rounded px-3 py-2 w-24" />
+            <!-- <input type="number" id="inputLimite" placeholder="Limite" value="6" min="1" max="20"
+                class="border rounded px-3 py-2 w-24" /> -->
             <button id="btnBuscar" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
                 Buscar
             </button>
@@ -106,8 +106,14 @@
         <h2 class="text-3xl font-extrabold text-gray-900 uppercase tracking-wide">
             Resultados Encontrados
         </h2>
-        <div id="container-cards" class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full max-w-7xl">
-            <!-- Os cards serão inseridos aqui pelo JS -->
+        <div class="w-full max-w-7xl flex flex-col items-center">
+            <div class="flex items-center justify-between w-full mb-4">
+                <button id="btnAnterior" class="bg-gray-300 w-12 h-12 flex items-center justify-center rounded-full text-3xl font-bold opacity-50 hover:opacity-100 hover:bg-gray-500 transition disabled:opacity-30" disabled aria-label="Anterior">&#60;</button>
+                <div id="container-cards" class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 flex-1 mx-4">
+                   <!-- Os cards serão inseridos aqui pelo JS -->
+                </div>
+                <button id="btnProximo" class="bg-gray-300 w-12 h-12 flex items-center justify-center rounded-full text-3xl font-bold opacity-50 hover:opacity-100 hover:bg-gray-500 transition disabled:opacity-30" aria-label="Próximo">&#62;</button>
+            </div>
         </div>
     </section>
 
