@@ -44,23 +44,14 @@
         mix-blend-mode: normal;
         background-size: 0.5px 0.5px; /* Tamanho do ruído 0.5 */
         }
+        
+        .text-shadow-custom {
+            text-shadow: 8px 8px 18px rgba(0, 0, 0, 0.85);
+        }
     }
     </style>
 
-
-
-
     <h1 class="text-7xl font-main text-shadow-custom">SIMILLARES</h1>
-
-    <style>
-        @layer utilities {
-            .text-shadow-custom {
-            text-shadow: 8px 8px 18px rgba(0, 0, 0, 0.85);
-            }
-        }
-    </style>
-
-
 
     <div class="hidden lg:flex lg:flex-row items-center gap-8 font-secundary">
       <a class="text-2xl hover:text-main transition duration-200" href="#">Apresentação</a>
@@ -74,19 +65,15 @@
 
 </header>
 
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-black text-gray-100 font-secundary">
 
-    <!--Apresentação do site-->
     <section class="relative flex flex-col justify-between items-center text-center h-[700px] lg:h-[1000px] lg:bg-[url('img/cinema-com-caixa-de-pipoca.jpg')] lg:bg-cover lg:bg-center">
-        <!-- Imagem oculta para mobile -->
         <img src="img/image.png" class="block lg:hidden absolute inset-0 w-full h-full object-cover z-0"/>
         <h1 class="text-3xl font-bold mt-12 text-white drop-shadow z-10 py-10 lg:text-4xl lg:py-20">A arte de escolher bem</h1>
         <h3 class="hidden lg:block font-mogra text-2xl text-white mx-auto mb-8 drop-shadow z-10 px-6 lg:text-4xl lg:mb-12 lg:px-40">Em um mundo saturado de opções, SIMILLIARES é seu guia confiável. Críticas aprofundadas, análises técnicas e recomendações certeiras para cinéfilos e amantes de uma boa história.</h3>
     </section>
 
-    <!-- Barra de busca -->
     <div class="w-full h-[100px] lg:h-[146px] flex flex-col items-center py-8 shadow bg-dark-bg">
-        <!-- Input grande: só aparece em lg pra cima -->
         <div class="hidden lg:flex w-full max-w-[800px]">
             <input type="text" id="inputBusca" placeholder="Digite o que deseja buscar"
                 class="rounded-full w-[743px] h-[63px] border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-font-[\'Sintony\'] placeholder:text-[32px]" />
@@ -94,7 +81,6 @@
                 <img src="img/lupa.png" alt="Buscar" class="w-6 h-6" />
             </button>
         </div>
-        <!-- Input pequeno: só aparece em telas menores que lg -->
         <div class="flex lg:hidden justify-center w-full max-w-xs mx-auto pb-[20px] -mt-3">
             <input type="text" id="inputBuscaMobile" placeholder="Digite o que deseja buscar"
                 class="rounded-full w-full h-12 px-4 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-dark-bg text-white placeholder-font-['Sintony'] placeholder:text-[20px] border-0 -mt-0.5" />
@@ -105,17 +91,15 @@
 
     </div>
 
-    <!-- Cards de resultados -->
     <section class="px-6 py-12 flex flex-col items-center gap-10">
-        <h2 class="text-3xl font-extrabold text-gray-900 uppercase tracking-wide">
+        <h2 class="text-4xl font-main text-white uppercase tracking-wide text-shadow-custom">
             Resultados Encontrados
         </h2>
         <div class="w-full max-w-7xl flex flex-col items-center">
             <div class="flex items-center justify-between w-full mb-4">
                 <button id="btnAnterior" class="bg-gray-300 w-12 h-12 flex items-center justify-center rounded-full text-3xl font-bold opacity-50 hover:opacity-100 hover:bg-gray-500 transition disabled:opacity-30" disabled aria-label="Anterior">&#60;</button>
                 <div id="container-cards" class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 flex-1 mx-4">
-                   <!-- Os cards serão inseridos aqui pelo JS -->
-                </div>
+                   </div>
                 <button id="btnProximo" class="bg-gray-300 w-12 h-12 flex items-center justify-center rounded-full text-3xl font-bold opacity-50 hover:opacity-100 hover:bg-gray-500 transition disabled:opacity-30" aria-label="Próximo">&#62;</button>
             </div>
         </div>
@@ -140,6 +124,4 @@
 
     </div>
 </footer>
-
-
 </html>
